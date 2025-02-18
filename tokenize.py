@@ -17,7 +17,7 @@ token_specification = [
     ('ID', r'[a-zA-Z_][a-zA-Z0-9_]*'),
     ('FLOAT', r'\d+\.\d*|\.\d+'),
     ('INTEGER', r'\d+'),
-    ('CHAR', r'\'([^\\']|\\.)\''),
+    ('CHAR', r"\'([^\\]|\\[n'\\x0-9a-fA-F])\'"),
     ('PLUS', r'\+'),
     ('MINUS', r'-'),
     ('TIMES', r'\*'),
