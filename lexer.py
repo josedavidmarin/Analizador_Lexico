@@ -143,6 +143,10 @@ class Token:
     lineno: int
 
 def tokenize(text):
+
+    # Elimina espacios y saltos de línea iniciales para ajustar la numeración de líneas
+    text = text.lstrip()
+
     index = 0  # Índice del texto 
     lineno = 1  # Contador de líneas
 
@@ -192,14 +196,14 @@ def tokenize(text):
                 yield Token('ID', value, lineno)
             index = match.end()
 
-        # Enteros
-        elif match := INT_PAT.match(text, index):
-            yield Token('INTEGER', match.group(), lineno)
-            index = match.end()
-
         # Flotantes
         elif match := FLOAT_PAT.match(text, index):
             yield Token('FLOAT', match.group(), lineno)
+            index = match.end()
+
+        # Enteros
+        elif match := INT_PAT.match(text, index):
+            yield Token('INTEGER', match.group(), lineno)
             index = match.end()
 
         # Cadenas de caracteres
